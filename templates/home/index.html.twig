@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'accueil{% endblock %}
+
+{% block body %}
+
+<h1>Articles recemment postés</h1>
+{% for article in articles %}
+
+<div class="card col-md-6 m-4" style="display:inline-block ; width: 18rem;">
+  <img src="{{ article.photo}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ article.titre }}</h5>
+    <p class="card-text">{{ article.description }}</p>
+    <a href="#" class="btn btn-primary">{{ article.auteur }}</a>
+    <a href="{{path("app_article_delete", {'id' : entity.id})}}" class="btn btn-danger">Supprimer article</a>
+    <span>{{article.publication | date ("d-M-Y")}}</span>
+  </div>
+</div>
+
+{% endfor %}
+{% endblock %}
