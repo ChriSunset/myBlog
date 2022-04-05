@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'accueil{% endblock %}
+
+{% block body %}
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Redigez votre commentaire</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        {{form(commentaire)}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        <button type="button" class="btn btn-primary">Envoyer commentaire</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card m-3" style=" width: 50rem;">
+  <img src="{{ article.photo}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ article.titre }}</h5>
+    <p class="card-text">{{ article.description }}</p>
+    <p class="card-text">{{ article.auteur }}</p>
+    <span>{{article.publication | date ("d-M-Y")}}</span>
+    
+    {# <a href="{{path('app_comments', {'id': commentaire.id})}}" class="btn btn-success">Connectez-vous pour poster un commentaire !</i></a> #}
+  </div>
+</div>
+
+<section class="py-5">
+            <div class="container px-4 px-lg-5 my-5">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6"><img class="card-img-top mb-5 mb-md-0" src="{{ asset('uploads/photo/' ~ article.photo)}}" alt="..."></div>
+                    {# {{ asset('uploads/photo/' ~ article.photo)}} #}
+                    <div class="col-md-6">
+                        <div class="small mb-1">{{article.publication | date ("d-M-Y")}}</div>
+                        <h1 class="display-5 fw-bolder">{{ article.titre }}</h1>
+                        <div class="fs-5 mb-5">
+                            {# <span class="text-decoration-line-through">$45.00</span> #}
+                            <span>{{ article.auteur }}</span>
+                        </div>
+                        <p class="lead">{{ article.description }}</p>
+                        <div class="d-flex">
+                            <input class="form-control text-center me-3" id="inputQuantity" type="num" value="{{article.comments|length}}" style="max-width: 3rem">
+                            <button class="btn btn-outline-dark flex-shrink-0" type="button">
+                                <i class="bi-cart-fill me-1"></i>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                  Poster un commmentaire
+                                </button>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<div>
+  <ul class="list-group d-flex">
+    {% for comment in article.comments %}
+<div>
+ <strong>{{comment.auteur.prenom}}</strong>
+</div>
+<div>
+  <li class="list-group-item">{{comment.commentaire}}</li>
+</div>
+    {% endfor %}
+  </ul>
+
+
+
+</div>
+        </section>
+
+
+
+{% endblock %}

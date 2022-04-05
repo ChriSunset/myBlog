@@ -4,10 +4,16 @@
 
 {% block body %}
 <div class = "row">
+{%  if is_granted('ROLE_ADMIN') or is_granted('ROLE_USER') %}
 <h2 class="text-center">Poster un article</h2>
     <div class="col-md-6 mx-auto">
         {{form(myArticle)}}
     </div>
+   
+{% else %}
 
+<h2 class="text-center">Vous devez être connecté pour poster un article !</h2>
+
+{% endif %}
 </div>
 {% endblock %}

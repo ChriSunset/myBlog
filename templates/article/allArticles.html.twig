@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page d'accueil{% endblock %}
+
+{% block body %}
+
+
+
+<h1 class = "text-center">Articles recemment postés</h1>
+
+
+
+{# <div class="card col-md-6 m-4" style="display:inline-block ; width: 18rem;">
+  <img src="{{ article.photo}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{ article.titre }}</h5>
+    <p class="card-text">{{ article.description }}</p>
+    <p class="card-text">{{ article.auteur }}</p>
+    {%  if is_granted('ROLE_ADMIN') %}
+    <a href="{{path('app_article_delete', {'id': article.id})}}" class="btn btn-danger"><i class="text-warning fa fa-trash"></i></a>
+    <a href="{{path('app_article_edit', {'id': article.id})}}" class="btn btn-success"><i class="text-warning fa fa-edit"></i></a>
+    {% endif %}
+    <span>{{article.publication | date ("d-M-Y")}}</span>
+  </div>
+</div> #}
+
+
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#Id</th>
+      <th scope="col">Titre</th>
+      <th scope="col">Description</th>
+      <th scope="col">Auteur</th>
+      <th scope="col">Publication</th>
+      <th scope="col">Illustration</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+    <tbody>
+    {% for article in articles %}
+        <tr>
+            <th scope="row"></th>
+            <th>{{ article.titre }}</th>
+            <th>{{ article.description }}</th>
+            <th>{{ article.auteur }}</th>
+            <th>{{ article.publication | date ("d-M-Y")}}</th>
+    {%  if is_granted('ROLE_ADMIN') %}
+        <td>
+            <th><a href="{{path('app_article_delete', {'id': article.id})}}" class="btn btn-danger"><i class="text-warning fa fa-trash"></i></a></th>
+            <th><a href="{{path('app_article_edit', {'id': article.id})}}" class="btn btn-success"><i class="text-warning fa fa-edit"></i></a></th>
+        </td>  
+        </tr>
+        {% endif %}
+    </tbody>
+
+{% endfor %}
+{% endblock %}

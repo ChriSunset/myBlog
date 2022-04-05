@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfilController!{% endblock %}
+
+{% block body %}
+<h1 class="text-muted text-center">Mon compte</h1>
+<h2 class="text-center">Bienvenue sur votre page {{app.user.prenom}} {{app.user.nom}}</h2>
+
+<div class="container">
+    <p>Date de naissance : {{app.user.dateDeNaissance | date('d/m/y')}}</p>
+    <p>Adresse mail : {{app.user.email}}</p>
+
+    <hr>
+    {% if is_granted ('ROLE_ADMIN') %}
+    <a class = "text-center" href="#">Voir les commentaires du site</a>
+    <br>
+    <a class = "text-center" href="{{path('app_all_article')}}">Voir les articles du site</a>
+    <br>
+    <a class = "text-center" href="{{path('app_user')}}">Voir les utilisateurs du site</a>
+    <br>
+    {% endif %}
+    <a href="#">Voir les articles</a>
+    <br>
+    <a href="{{path('app_user_update', {id: app.user.id })}}">Editer mon profil</a>
+</div>
+{# <h2 class="text-center">Vous puvez ajouter un article si vous le souhaitez !</h2>
+    <div class="col-md-6 mx-auto">
+        {{form(myArticle)}}
+    </div>
+
+</div> #}
+
+{% endblock %}

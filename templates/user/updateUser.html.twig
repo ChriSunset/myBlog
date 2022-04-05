@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+
+{{form_start(updateUser)}}
+
+<div class="row container">
+  <div class="col-md-6">
+    {{form_row(updateUser.nom)}}
+    {{form_row(updateUser.prenom)}}
+    {{form_row(updateUser.password,{'attr':{ disabled:'disabled'}})}}
+  </div>
+  <div class="col-md-6">
+    {{form_row(updateUser.email)}}
+    {{form_row(updateUser.date_de_naissance)}}
+    {{form_row(updateUser.submit)}} 
+    
+  </div>
+</div>
+
+{{form_end(updateUser)}}
+{% endblock %}

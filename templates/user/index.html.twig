@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserController!{% endblock %}
+
+{% block body %}
+
+<h1>Liste des utilisateurs</h1>
+{% for user in users %}
+
+<div class="card col-md-6 m-4" style="display:inline-block ; width: 18rem;">
+ 
+  <div class="card-body">
+    <p class="card-text">{{ user.email }}</p>
+    <p class="card-text">{{ user.nom }}</p>
+    <p class="card-text">{{ user.prenom }}</p>
+    <p class="card-text">{{ user.datedenaissance|date('d/m/Y') }}</p>
+    {%  if is_granted('ROLE_ADMIN') %}
+    <a href="{{path('app_user_delete', {'id': user.id})}}" class="btn btn-danger"><i class="text-warning fa fa-trash"></i></a>
+    <a href="{{path('app_user_update', {'id': user.id})}}" class="btn btn-success"><i class="text-warning fa fa-edit"></i></a>
+    {% endif %}
+  </div>
+</div>
+
+{% endfor %}
+{% endblock %}

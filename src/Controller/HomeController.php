@@ -35,4 +35,22 @@ class HomeController extends AbstractController
             'articles' => $articles,
         ]);
     }
+
+    /**
+     * @package App\Controller
+     * @Route("/all/articl", name="app_all_articl")
+     */
+    /*public function allArticles(): Response
+    {
+        // logique stocker dans une variable avec tous les articles
+
+        $articles = null;
+        // Méthode findBy qui permet de récupérer les données avec des critères de filtre et de tri
+        $articles = $this->manager->getRepository(Article::class)->findAll([], ['publication' => 'desc']);
+        // dd($articles);
+        return $this->render('home/allArticles.html.twig', [
+            'controller_name' => 'HomeController',
+            'articles' => $articles,
+        ]);
+    }*/
 }
